@@ -259,6 +259,11 @@ void QgsVectorTileMVTEncoder::addFeature( vector_tile::Tile_Layer *tileLayer, co
     if ( g.area() < onePixel * onePixel )
       return; // too small
   }
+  else if ( ( geomType == Qgis::GeometryType::Null ) ||
+            ( geomType == Qgis::GeometryType::Unknown ) )
+  {
+    return;
+  }
 
   vector_tile::Tile_Feature *feature = tileLayer->add_features();
 
